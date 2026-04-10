@@ -1,1160 +1,1521 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Portafolio de Edwin De Los Santos, Administrador de Servidores y Analista de Seguridad Informática">
-    <title>Portafolio</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edwin De Los Santos — SysAdmin & Cybersecurity</title>
+  <link rel="shortcut icon" href="./assets/images/bord.png" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    :root {
+      --bg: #0a0c0f;
+      --bg2: #0f1218;
+      --bg3: #141820;
+      --bg4: #1a2030;
+      --border: #1e2840;
+      --border2: #2a3550;
+      --accent: #00d4ff;
+      --accent2: #00ff9d;
+      --accent3: #ff6b35;
+      --text: #e8edf5;
+      --text2: #8a9ab8;
+      --text3: #4a5568;
+      --mono: 'JetBrains Mono', monospace;
+      --sans: 'Syne', sans-serif;
+      --radius: 8px;
+      --radius-lg: 14px;
+    }
 
-    <!--
-    - favicon
-  -->
-    <link rel="shortcut icon" href="./assets/images/bord.png" type="image/x-icon">
+    html { scroll-behavior: smooth; }
 
-    <!--
-    - custom css link
-  -->
-    <link rel="stylesheet" href="./assets/css/style.css">
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 14px;
+      line-height: 1.7;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
-    <!--
-    - google font link
-  -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    /* SCANLINE EFFECT */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,212,255,0.015) 2px, rgba(0,212,255,0.015) 4px);
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* LAYOUT */
+    .layout {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      grid-template-rows: auto 1fr;
+      min-height: 100vh;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 24px;
+      gap: 24px;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      grid-row: 1 / 3;
+      position: sticky;
+      top: 24px;
+      height: fit-content;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .sidebar-top {
+      padding: 32px 24px 24px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+
+    .sidebar-top::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+    }
+
+    .avatar-ring {
+      display: inline-block;
+      padding: 3px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      margin-bottom: 16px;
+    }
+
+    .avatar-ring img {
+      display: block;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--bg2);
+    }
+
+    .sidebar-name {
+      font-family: var(--sans);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .sidebar-role {
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .sidebar-role2 {
+      font-size: 11px;
+      color: var(--accent2);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .sidebar-body { padding: 20px 24px; }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--text2);
+      font-size: 12px;
+    }
+
+    .contact-row:last-child { border-bottom: none; }
+
+    .contact-row .icon {
+      width: 32px;
+      height: 32px;
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 14px;
+    }
+
+    .contact-row a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 11px;
+      word-break: break-all;
+    }
+
+    .contact-row a:hover { color: var(--accent2); }
+
+    .contact-label { font-size: 10px; color: var(--text3); letter-spacing: 1px; text-transform: uppercase; }
+
+    .social-row {
+      display: flex;
+      gap: 10px;
+      padding: 20px 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .social-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 9px;
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      border-radius: var(--radius);
+      color: var(--text2);
+      text-decoration: none;
+      font-size: 11px;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .social-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(0,212,255,0.05);
+    }
+
+    .social-btn svg { width: 14px; height: 14px; fill: currentColor; }
+
+    /* STATUS BADGE */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0,255,157,0.08);
+      border: 1px solid rgba(0,255,157,0.25);
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 10px;
+      color: var(--accent2);
+      letter-spacing: 1px;
+      margin-top: 12px;
+    }
+
+    .status-dot {
+      width: 6px; height: 6px;
+      background: var(--accent2);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    /* NAV */
+    .navbar {
+      grid-column: 2;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 6px;
+      display: flex;
+      gap: 4px;
+    }
+
+    .nav-btn {
+      flex: 1;
+      padding: 10px 16px;
+      background: transparent;
+      border: none;
+      border-radius: var(--radius);
+      color: var(--text3);
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+    }
+
+    .nav-btn::before {
+      content: '> ';
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .nav-btn:hover { color: var(--text); background: var(--bg3); }
+    .nav-btn:hover::before { opacity: 0.4; }
+
+    .nav-btn.active {
+      background: var(--bg3);
+      color: var(--accent);
+      border: 1px solid var(--border2);
+    }
+
+    .nav-btn.active::before { opacity: 1; }
+
+    /* CONTENT */
+    .content { grid-column: 2; }
+
+    .page { display: none; animation: fadeIn 0.3s ease; }
+    .page.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* SECTION HEADER */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .section-header .prompt {
+      font-size: 11px;
+      color: var(--accent2);
+    }
+
+    .section-header h2 {
+      font-family: var(--sans);
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    /* CARDS */
+    .card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-bottom: 20px;
+      transition: border-color 0.2s;
+    }
+
+    .card:hover { border-color: var(--border2); }
+
+    /* ABOUT */
+    .about-bio {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: var(--radius-lg);
+      padding: 24px 28px;
+      margin-bottom: 28px;
+      font-size: 14px;
+      color: var(--text2);
+      line-height: 1.9;
+    }
+
+    .about-bio p { margin-bottom: 14px; }
+    .about-bio p:last-child { margin-bottom: 0; }
+
+    .about-bio strong { color: var(--accent); font-weight: 500; }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .skill-tag {
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 11px;
+      color: var(--text2);
+      text-align: center;
+      letter-spacing: 0.5px;
+      transition: all 0.2s;
+    }
+
+    .skill-tag:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(0,212,255,0.05);
+    }
+
+    /* WHAT I DO */
+    .doing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .doing-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      transition: all 0.2s;
+    }
+
+    .doing-card:hover {
+      border-color: var(--border2);
+      background: var(--bg3);
+    }
+
+    .doing-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .doing-icon img { width: 28px; height: 28px; object-fit: contain; }
+
+    .doing-card h4 { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+    .doing-card p { font-size: 12px; color: var(--text2); line-height: 1.6; }
+
+    /* TOOLS */
+    .tools-scroll {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 28px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border2) transparent;
+    }
+
+    .tool-item {
+      flex-shrink: 0;
+      width: 72px;
+      height: 72px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px;
+      transition: all 0.2s;
+    }
+
+    .tool-item:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .tool-item img { width: 32px; height: 32px; object-fit: contain; }
+    .tool-item span { font-size: 8px; color: var(--text3); text-align: center; letter-spacing: 0.5px; }
+
+    /* RESUME */
+    .timeline-section { margin-bottom: 32px; }
+
+    .timeline-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .timeline-label .line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .timeline-label h3 {
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text2);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+      padding: 18px 20px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-left: 2px solid var(--border2);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      margin-bottom: 10px;
+      transition: all 0.2s;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -6px; top: 50%;
+      transform: translateY(-50%);
+      width: 10px; height: 10px;
+      background: var(--bg);
+      border: 2px solid var(--border2);
+      border-radius: 50%;
+    }
+
+    .timeline-item:hover {
+      border-left-color: var(--accent);
+      background: var(--bg3);
+    }
+
+    .timeline-item:hover::before { border-color: var(--accent); background: var(--accent); }
+
+    .timeline-item.open { border-left-color: var(--accent2); }
+    .timeline-item.open::before { border-color: var(--accent2); background: var(--accent2); }
+
+    .timeline-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .timeline-title { font-size: 14px; font-weight: 500; color: var(--text); }
+    .timeline-period {
+      font-size: 11px;
+      color: var(--accent);
+      background: rgba(0,212,255,0.08);
+      border: 1px solid rgba(0,212,255,0.2);
+      border-radius: 4px;
+      padding: 2px 8px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .timeline-role { font-size: 12px; color: var(--text3); margin-top: 2px; }
+
+    .timeline-details {
+      display: none;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    .timeline-item.open .timeline-details { display: block; }
+
+    .timeline-details ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .timeline-details li {
+      font-size: 12px;
+      color: var(--text2);
+      padding-left: 16px;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .timeline-details li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent2);
+      font-size: 10px;
+    }
+
+    /* SKILLS BARS */
+    .skills-section { margin-bottom: 28px; }
+
+    .skill-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .skill-row:last-child { border-bottom: none; }
+    .skill-name { width: 160px; font-size: 12px; color: var(--text2); flex-shrink: 0; }
+
+    .skill-bar {
+      flex: 1;
+      height: 4px;
+      background: var(--bg3);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .skill-fill {
+      height: 100%;
+      border-radius: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      transform-origin: left;
+      animation: fillBar 1s ease forwards;
+      transform: scaleX(0);
+    }
+
+    @keyframes fillBar {
+      to { transform: scaleX(1); }
+    }
+
+    .skill-tags-section {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+    }
+
+    .skill-category { margin-bottom: 16px; }
+    .skill-category:last-child { margin-bottom: 0; }
+    .skill-cat-label {
+      font-size: 10px;
+      color: var(--accent2);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .tag-row { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .tag {
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      border-radius: 4px;
+      padding: 4px 10px;
+      font-size: 11px;
+      color: var(--text2);
+    }
+
+    /* PROJECTS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .project-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .project-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      background: var(--bg3);
+    }
+
+    .project-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .project-icon {
+      width: 40px; height: 40px;
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .project-lang {
+      font-size: 10px;
+      background: rgba(0,212,255,0.08);
+      border: 1px solid rgba(0,212,255,0.2);
+      color: var(--accent);
+      border-radius: 4px;
+      padding: 3px 8px;
+    }
+
+    .project-card h3 {
+      font-family: var(--sans);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .project-card p { font-size: 12px; color: var(--text2); line-height: 1.7; flex: 1; margin-bottom: 16px; }
+
+    .project-link {
+      font-size: 11px;
+      color: var(--accent2);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: auto;
+    }
+
+    .project-link::after { content: ' →'; }
+
+    /* GITHUB CTA */
+    .github-cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg2);
+      border: 1px solid var(--border2);
+      border-radius: var(--radius-lg);
+      padding: 20px 24px;
+      margin-bottom: 28px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .github-cta:hover {
+      border-color: var(--accent);
+      background: rgba(0,212,255,0.03);
+    }
+
+    .github-cta-left { display: flex; align-items: center; gap: 14px; }
+    .github-cta-left svg { width: 32px; height: 32px; fill: var(--text2); }
+    .github-cta:hover .github-cta-left svg { fill: var(--accent); }
+    .github-cta-title { font-family: var(--sans); font-size: 15px; font-weight: 600; color: var(--text); }
+    .github-cta-sub { font-size: 12px; color: var(--text3); margin-top: 1px; }
+    .github-cta-arrow { font-size: 20px; color: var(--text3); }
+    .github-cta:hover .github-cta-arrow { color: var(--accent); }
+
+    /* CERTS */
+    .cert-filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .filter-btn {
+      padding: 6px 14px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      color: var(--text3);
+      font-family: var(--mono);
+      font-size: 11px;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 1px;
+    }
+
+    .filter-btn:hover { border-color: var(--border2); color: var(--text2); }
+    .filter-btn.active { background: rgba(0,212,255,0.08); border-color: var(--accent); color: var(--accent); }
+
+    .certs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 14px;
+    }
+
+    .cert-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      text-decoration: none;
+      display: block;
+      transition: all 0.2s;
+    }
+
+    .cert-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+    .cert-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      background: var(--bg3);
+      display: block;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cert-info { padding: 12px 14px; }
+    .cert-title { font-size: 12px; font-weight: 500; color: var(--text); margin-bottom: 3px; line-height: 1.4; }
+    .cert-issuer { font-size: 10px; color: var(--text3); letter-spacing: 1px; text-transform: uppercase; }
+
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+
+    .contact-info-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+    }
+
+    .contact-info-card h3 {
+      font-family: var(--sans);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .contact-method {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .contact-method:last-child { border-bottom: none; }
+
+    .contact-method .cm-icon {
+      width: 36px; height: 36px;
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    .cm-label { font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: 1px; }
+
+    .cm-val {
+      font-size: 12px;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .cm-val:hover { color: var(--accent); }
+
+    form { display: flex; flex-direction: column; gap: 14px; }
+
+    .form-input {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px 16px;
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.2s;
+      resize: none;
+    }
+
+    .form-input::placeholder { color: var(--text3); }
+    .form-input:focus { border-color: var(--accent); }
+
+    .submit-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 24px;
+      background: transparent;
+      border: 1px solid var(--accent);
+      border-radius: var(--radius);
+      color: var(--accent);
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .submit-btn:hover {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 960px) {
+      .layout {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto 1fr;
+        padding: 16px;
+        gap: 16px;
+      }
+      .sidebar { grid-row: 1; position: static; }
+      .navbar { grid-column: 1; }
+      .content { grid-column: 1; }
+    }
+
+    /* SCROLLBAR */
+    ::-webkit-scrollbar { width: 4px; height: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+
+    /* MAP */
+    .mapbox iframe {
+      width: 100%;
+      height: 220px;
+      border: none;
+      border-radius: var(--radius);
+      filter: invert(1) hue-rotate(180deg) brightness(0.85);
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    /* CERT hidden */
+    .cert-card[data-hidden] { display: none; }
+  </style>
 </head>
-
 <body>
 
-    <!--
-    - #MAIN
-  -->
-
-    <main>
-
-        <!--
-      - #SIDEBAR
-    -->
-        <aside class="sidebar" data-sidebar>
-
-            <div class="sidebar-info">
-
-                <figure class="avatar-box">
-                    <img src="./assets/images/my-avatar.jpg" alt="Edwin De Los Santos" width="80">
-                </figure>
-
-                <div class="info-content">
-                    <h1 class="name" title="Edwin De Los Santos">Edwin De Los Santos</h1>
-
-                    <p class="title">Administrador de Servidores</p>
-                    <p class="title">&</p>
-                    <p class="title">Analista de Seguridad Informática</p>
-                </div>
-
-                <button class="info_more-btn" data-sidebar-btn>
-                    <span>Mostrar Contactos</span>
-
-                    <ion-icon name="chevron-down"></ion-icon>
-                </button>
-
-            </div>
-
-            <div class="sidebar-info_more">
-
-                <div class="separator"></div>
-
-                <ul class="contacts-list">
-
-                    <li class="contact-item">
-
-                        <div class="icon-box">
-                            <ion-icon name="mail-outline"></ion-icon>
-                        </div>
-
-                        <div class="contact-info">
-                            <p class="contact-title">Email</p>
-
-                            <a href="mailto:edwindelossantos11@gmail.com"
-                                class="contact-link">edwindelossantos11@gmail.com</a>
-                        </div>
-
-                    </li>
-
-                    <li class="contact-item">
-
-                        <div class="icon-box">
-                            <ion-icon name="location-outline"></ion-icon>
-                        </div>
-
-                        <div class="contact-info">
-                            <p class="contact-title">Ubicación</p>
-
-                            <address>Santo Domingo, República Dominicana</address>
-                        </div>
-
-                    </li>
-
-                </ul>
-
-                <div class="separator"></div>
-
-                <ul class="social-list">
-
-                    <li class="social-item">
-                        <a href="https://github.com/edwindelossantos" class="social-link">
-                            <ion-icon name="logo-github"></ion-icon>
-                        </a>
-                    </li>
-
-                    <li class="social-item">
-                        <a href="https://www.linkedin.com/in/edwindelossantos11/" class="social-link">
-                            <ion-icon name="logo-linkedin"></ion-icon>
-                        </a>
-                    </li>
-
-                    <li class="social-item">
-                        <a href="https://www.youtube.com/@San3d11" class="social-link">
-                            <ion-icon name="logo-youtube"></ion-icon>
-                        </a>
-                    </li>
-
-                </ul>
-
-            </div>
-
-        </aside>
-
-        <!--
-      - #main-content
-    -->
-
-        <div class="main-content">
-
-            <!--
-        - #NAVBAR
-      -->
-
-            <nav class="navbar">
-
-                <ul class="navbar-list">
-
-                    <li class="navbar-item">
-                        <button class="navbar-link active" data-nav-link>Acerca de</button>
-                    </li>
-
-                    <li class="navbar-item">
-                        <button class="navbar-link" data-nav-link>Resumen</button>
-                    </li>
-
-                    <li class="navbar-item">
-                        <button class="navbar-link" data-nav-link>Portafolio</button>
-                    </li>
-
-                    <li class="navbar-item">
-                        <button class="navbar-link" data-nav-link>Contacto</button>
-                    </li>
-
-                </ul>
-
-            </nav>
-
-            <!--
-        - #ABOUT
-      -->
-
-            <article class="about active" data-page="about">
-
-                <header>
-                    <h2 class="h2 article-title">Acerca de mí</h2>
-                </header>
-
-                <section class="about-text">
-                    <p>
-                        Ingeniero en Sistemas y Computación, con amplia experiencia en Infraestructura y el Área de
-                        Seguridad de la Información y Soporte a Sistemas Informáticos y clientes finales.
-                        Habilidad para liderar proyectos que ayuden al desarrollo de las empresas con proyección de
-                        crecimiento y liderazgo de su segmento.
-                    </p>
-                </section>
-
-                <!--
-          - service
-        -->
-
-                <section class="service">
-
-                    <h3 class="h3 service-title">Qué Estoy Haciendo</h3>
-
-                    <ul class="service-list">
-
-                        <li class="service-item">
-
-                            <div class="service-icon-box">
-                                <img src="./assets/images/googlework.png" alt="Google Workspace icon" width="40">
-                            </div>
-
-                            <div class="service-content-box">
-                                <h4 class="h4 service-item-title">Google Workspace</h4>
-
-                                <p class="service-item-text">
-                                    Actualmente me encuentro en la capacitación online de Google Workspace.
-                                </p>
-                            </div>
-
-                        </li>
-
-                        <li class="service-item">
-
-                            <div class="service-icon-box">
-                                <img src="./assets/images/hack.png" alt="Hack The Box icon" width="40">
-                            </div>
-
-                            <div class="service-content-box">
-                                <h4 class="h4 service-item-title">Hack The Box</h4>
-
-                                <p class="service-item-text">
-                                    Completando algunas rutas de aprendizaje en la academia de Hack The Box.
-                                </p>
-                            </div>
-
-                        </li>
-
-                        <li class="service-item">
-
-                            <div class="service-icon-box">
-                                <img src="./assets/images/linux.png" alt="Linux icon" width="40">
-                            </div>
-
-                            <div class="service-content-box">
-                                <h4 class="h4 service-item-title">Linux</h4>
-
-                                <p class="service-item-text">
-                                    Estudiando para lograr la certificación de Linux Essentials.
-                                </p>
-                            </div>
-
-                        </li>
-
-                        <li class="service-item">
-
-                            <div class="service-icon-box">
-                                <img src="./assets/images/brain.png" alt="Capacitación icon" width="40">
-                            </div>
-
-                            <div class="service-content-box">
-                                <h4 class="h4 service-item-title">Capacitación Continua</h4>
-
-                                <p class="service-item-text">
-                                    Tengo pendiente algunos cursos adicionales para continuar con las capacitaciones
-                                    constantes.
-                                </p>
-                            </div>
-
-                        </li>
-
-                    </ul>
-
-                </section>
-
-                <!--
-          - SOLUCIONES
-        -->
-
-                <section class="clients">
-
-                    <h3 class="h3 clients-title">Soluciones</h3>
-
-                    <ul class="clients-list has-scrollbar">
-
-                        <li class="clients-item">
-                            <a href="#">
-                                <img src="./assets/images/mt.png" alt="Microsoft logo">
-                            </a>
-                        </li>
-
-                        <li class="clients-item">
-                            <a href="#">
-                                <img src="./assets/images/nesus.png" alt="Nessus logo">
-                            </a>
-                        </li>
-
-                        <li class="clients-item">
-                            <a href="#">
-                                <img src="./assets/images/win.png" alt="Windows logo">
-                            </a>
-                        </li>
-
-                        <li class="clients-item">
-                            <a href="#">
-                                <img src="./assets/images/linux.png" alt="Linux logo">
-                            </a>
-                        </li>
-
-                        <li class="clients-item">
-                            <a href="#">
-                                <img src="./assets/images/docker.png" alt="Docker logo">
-                            </a>
-                        </li>
-
-                        <li class="clients-item">
-                            <a href="#">
-                                <img src="./assets/images/sophos.png" alt="Sophos logo">
-                            </a>
-                        </li>
-
-                        <li class="clients-item">
-                            <a href="#">
-                                <img src="./assets/images/365.png" alt="Microsoft 365 logo">
-                            </a>
-                        </li>
-
-                        <li class="clients-item">
-                            <a href="#">
-                                <img src="./assets/images/vm.png" alt="VMware logo">
-                            </a>
-                        </li>
-
-                        <li class="clients-item">
-                            <a href="#">
-                                <img src="./assets/images/zabbix.png" alt="Zabbix logo">
-                            </a>
-                        </li>
-
-                        <li class="clients-item">
-                            <a href="#">
-                                <img src="./assets/images/graylog.png" alt="Graylog logo">
-                            </a>
-                        </li>
-
-                        <li class="clients-item">
-                            <a href="#">
-                                <img src="./assets/images/meraki.png" alt="Meraki logo">
-                            </a>
-                        </li>
-
-                        <li class="clients-item">
-                            <a href="#">
-                                <img src="./assets/images/veeam.png" alt="Veeam logo">
-                            </a>
-                        </li>
-
-                        <li class="clients-item">
-                            <a href="#">
-                                <img src="./assets/images/qnap.png" alt="QNAP logo">
-                            </a>
-                        </li>
-
-                    </ul>
-
-                </section>
-
-            </article>
-
-            <!--
-        - #RESUME
-      -->
-
-            <article class="resume" data-page="resume">
-
-                <header>
-                    <h2 class="h2 article-title">Resumen</h2>
-                </header>
-
-                <!-- EXPERIENCIA Y ESTUDIOS -->
-                <section class="timeline">
-
-                    <div class="title-wrapper">
-                        <div class="icon-box">
-                            <ion-icon name="book-outline"></ion-icon>
-                        </div>
-
-                        <h3 class="h3">Experiencia Laboral</h3>
-                    </div>
-
-                    <ol class="timeline-list">
-
-                        <li class="timeline-item">
-
-                            <h4 class="h4 timeline-item-title">Caribe Media S.A.</h4>
-
-                            <span>Diciembre 2020 — Actual (Administrador de Servidores)</span>
-
-                            <p class="timeline-text">
-                                Administración y despliegue de scripts con PowerShell y Python. Implementación y
-                                Administración de Eventos de logs con Graylog. Administración de Windows Server
-                                2008-2019. Administración de Servicios de Red (AD, DHCP, DNS, WDS, WSUS, GPOs, Print
-                                Server). Administración de Vmware ESXi, vCenter. Administración de QNap. Administración
-                                de NetApp. Administración de Microsoft Exchange 365. Implementación y Administración de
-                                MFA Microsoft 365. Administración de Microsoft OneDrive y Sharepoint 365. Administración
-                                Veeam Backup. Administración Firewall Cisco Meraki. Administración Sophos Center.
-                                Administración de Monitoreo con Zabbix. Documentación (Procesos, Bitácoras y
-                                Procedimientos). Cableado Estructurado en los Servidores. Soporte a Usuarios Finales
-                                (Microsoft Windows / Apple).
-                            </p>
-
-                        </li>
-
-                        <li class="timeline-item">
-
-                            <h4 class="h4 timeline-item-title">Axesa Servicios de Información (San Juan, Puerto Rico)
-                            </h4>
-
-                            <span>Diciembre 2020 — Actual (Administrador de Servidores - Remoto)</span>
-
-                            <p class="timeline-text">
-                                Administración y despliegue de scripts con PowerShell. Administración de Windows Server
-                                2008-2019. Administración de Servicios de Red (AD, DHCP, DNS, WDS, WSUS, GPOs, File
-                                Server). Administración de Vmware ESXi, vCenter. Administración de Microsoft Exchange
-                                365. Implementación y Administración de MFA Microsoft 365. Administración de Microsoft
-                                OneDrive y Sharepoint 365. Administración Firewall Cisco Meraki. Administración Sophos
-                                Center. Soporte a Usuarios Finales.
-                            </p>
-
-                        </li>
-
-                        <li class="timeline-item">
-
-                            <h4 class="h4 timeline-item-title">Infopáginas (Guaynabo, Puerto Rico)</h4>
-
-                            <span>Julio 2023 — Actual (Administrador de Servidores - Remoto)</span>
-
-                            <p class="timeline-text">
-                                Escaneo de Vulnerabilidades. Administración de Active Directory. Administración Exchange
-                                2019. Administración de firewall Fortinet. Administración de firewall WatchGuard.
-                                Verificación de alertas de seguridad.
-                            </p>
-
-                        </li>
-
-                        <li class="timeline-item">
-
-                            <h4 class="h4 timeline-item-title">Ministerio Público</h4>
-
-                            <span>Julio 2019 — Octubre 2020 (Analista de Seguridad de Información)</span>
-
-                            <p class="timeline-text">
-                                Escaneo de Vulnerabilidades. Administración de Active Directory. Administración Exchange
-                                2019. Administración de firewall Fortinet. Administración de firewall WatchGuard.
-                                Verificación de alertas de seguridad.
-                            </p>
-
-                        </li>
-
-                        <li class="timeline-item">
-
-                            <h4 class="h4 timeline-item-title">Ministerio Público</h4>
-
-                            <span>Octubre 2016 — Julio 2019 (Administrador de Sistemas)</span>
-
-                            <p class="timeline-text">
-                                Administración de Windows Server 2008-2019, Hyper-V, Proxmox. Servidores HP y DELL. SAN
-                                Synology, PowerVault MD300i, PowerVault TL2000. Servidor de Correos Exchange 2010.
-                                Servicios de Red (AD, DHCP, DNS, File Server). Backup (BackupExec). Cableado
-                                Estructurado. Documentación de Red. Soporte a Usuarios Finales.
-                            </p>
-
-                        </li>
-
-                        <li class="timeline-item">
-
-                            <h4 class="h4 timeline-item-title">Ministerio Público</h4>
-
-                            <span>Agosto 2013 — Octubre 2016 (Soporte Técnico)</span>
-
-                        </li>
-
-                    </ol>
-
-                </section>
-
-                <!-- ESTUDIOS-->
-                <section class="timeline">
-
-                    <div class="title-wrapper">
-                        <div class="icon-box">
-                            <ion-icon name="book-outline"></ion-icon>
-                        </div>
-
-                        <h3 class="h3">Estudios</h3>
-                    </div>
-
-                    <ol class="timeline-list">
-
-                        <li class="timeline-item">
-
-                            <h4 class="h4 timeline-item-title">Universidad Dominicana O&M</h4>
-
-                            <span>2010 - 2014</span>
-
-                            <p class="timeline-text">
-                                Ingeniería en Sistemas y Computación
-                            </p>
-
-                        </li>
-
-                    </ol>
-
-                </section>
-
-                <!--HABILIDADES-->
-                <section class="skill">
-
-                    <h3 class="h3 skills-title">Habilidades</h3>
-
-                    <ul class="skills-list content-card">
-
-                        <li class="skills-item">
-
-                            <div class="title-wrapper">
-                                <h5 class="h5">Windows Servers</h5>
-                                <data value="90">90%</data>
-                            </div>
-
-                            <div class="skill-progress-bg">
-                                <div class="skill-progress-fill" style="width: 90%;"></div>
-                            </div>
-
-                        </li>
-
-                        <li class="skills-item">
-
-                            <div class="title-wrapper">
-                                <h5 class="h5">Linux</h5>
-                                <data value="60">60%</data>
-                            </div>
-
-                            <div class="skill-progress-bg">
-                                <div class="skill-progress-fill" style="width: 60%;"></div>
-                            </div>
-
-                        </li>
-
-                        <li class="skills-item">
-
-                            <div class="title-wrapper">
-                                <h5 class="h5">Docker</h5>
-                                <data value="60">60%</data>
-                            </div>
-
-                            <div class="skill-progress-bg">
-                                <div class="skill-progress-fill" style="width: 60%;"></div>
-                            </div>
-
-                        </li>
-
-                        <li class="skills-item">
-
-                            <div class="title-wrapper">
-                                <h5 class="h5">Microsoft 365</h5>
-                                <data value="70">70%</data>
-                            </div>
-
-                            <div class="skill-progress-bg">
-                                <div class="skill-progress-fill" style="width: 70%;"></div>
-                            </div>
-
-                        </li>
-
-                        <li class="skills-item">
-
-                            <div class="title-wrapper">
-                                <h5 class="h5">Servidores Físicos</h5>
-                                <data value="85">85%</data>
-                            </div>
-
-                            <div class="skill-progress-bg">
-                                <div class="skill-progress-fill" style="width: 85%;"></div>
-                            </div>
-
-                        </li>
-
-                        <li class="skills-item">
-
-                            <div class="title-wrapper">
-                                <h5 class="h5">Documentación</h5>
-                                <data value="90">90%</data>
-                            </div>
-
-                            <div class="skill-progress-bg">
-                                <div class="skill-progress-fill" style="width: 90%;"></div>
-                            </div>
-
-                        </li>
-
-                        <li class="skills-item">
-
-                            <div class="title-wrapper">
-                                <h5 class="h5">VMware</h5>
-                                <data value="60">60%</data>
-                            </div>
-
-                            <div class="skill-progress-bg">
-                                <div class="skill-progress-fill" style="width: 60%;"></div>
-                            </div>
-
-                        </li>
-
-                    </ul>
-
-                </section>
-
-            </article>
-
-            <!--
-        - #PORTFOLIO
-      -->
-
-            <article class="portfolio" data-page="portfolio">
-
-                <header>
-                    <h2 class="h2 article-title">Certificados</h2>
-                </header>
-
-                <section class="projects">
-
-                    <ul class="project-list">
-
-                        <li class="project-item active" data-filter-item data-category="HackConRD 2026">
-                            <a href="https://credsverse.com/credentials/6420c416-723f-4787-ad5f-2877b7a99264?preview=1"
-                                target="_blank">
-
-                                <figure class="project-img">
-                                    <div class="project-item-icon-box">
-                                        <ion-icon name="eye-outline"></ion-icon>
-                                    </div>
-
-                                    <img src="./assets/images/desa-malware.png" alt="Workshop de Desarrollo de Malware"
-                                        loading="lazy">
-
-                                </figure>
-
-                                <h3 class="project-title">Workshop de Desarrollo de Malware</h3>
-                                <p class="project-category">RedTeamRD</p>
-
-                            </a>
-                        </li>
-
-                        <li class="project-item active" data-filter-item data-category="HackConRD 2026">
-                            <a href="https://credsverse.com/credentials/6420c416-723f-4787-ad5f-2877b7a99264?preview=1"
-                                target="_blank">
-
-                                <figure class="project-img">
-                                    <div class="project-item-icon-box">
-                                        <ion-icon name="eye-outline"></ion-icon>
-                                    </div>
-
-                                    <img src="./assets/images/HackConRD-2026.png" alt="Staff | Hacking Rooms"
-                                        loading="lazy">
-
-                                </figure>
-
-                                <h3 class="project-title">Staff | Hacking Rooms</h3>
-                                <p class="project-category">RedTeamRD</p>
-
-                            </a>
-                        </li>
-
-                        <li class="project-item active" data-filter-item data-category="Pre Security">
-                            <a href="https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-TBN55UHNBN.pdf"
-                                target="_blank">
-
-                                <figure class="project-img">
-                                    <div class="project-item-icon-box">
-                                        <ion-icon name="eye-outline"></ion-icon>
-                                    </div>
-
-                                    <img src="./assets/images/thm-pre-security.png" alt="Pre Security" loading="lazy">
-
-                                </figure>
-
-                                <h3 class="project-title">Pre Security</h3>
-                                <p class="project-category">TryHackMe</p>
-
-                            </a>
-                        </li>
-
-                        <li class="project-item active" data-filter-item data-category="Ansible Desde Cero">
-                            <a href="https://www.udemy.com/certificate/UC-1b310153-d9ef-4d5f-8c6e-2fded5d4d3e7/"
-                                target="_blank">
-
-                                <figure class="project-img">
-                                    <div class="project-item-icon-box">
-                                        <ion-icon name="eye-outline"></ion-icon>
-                                    </div>
-
-                                    <img src="./assets/images/Ansible.jpg" alt="Ansible Desde Cero" loading="lazy">
-
-                                </figure>
-
-                                <h3 class="project-title">Ansible Desde Cero</h3>
-                                <p class="project-category">Udemy</p>
-
-                            </a>
-                        </li>
-
-                        <li class="project-item active" data-filter-item data-category="AWS Cloud Practitioner">
-                            <a href="blob:https://skillbuilder.aws/4eeee865-6626-42fc-8eea-76c9a2efb66b"
-                                target="_blank">
-
-                                <figure class="project-img">
-                                    <div class="project-item-icon-box">
-                                        <ion-icon name="eye-outline"></ion-icon>
-                                    </div>
-
-                                    <img src="./assets/images/aws.jpg" alt="AWS Cloud Practitioner Essentials"
-                                        loading="lazy">
-
-                                </figure>
-
-                                <h3 class="project-title">AWS Cloud Practitioner Essentials</h3>
-                                <p class="project-category">AWS</p>
-
-                            </a>
-                        </li>
-
-                        <li class="project-item active" data-filter-item data-category="Introduction to Cybersecurity">
-                            <a href="https://www.credly.com/badges/07339a39-6d6c-4c08-bd6f-deccd2a5eb30/linked_in_profile"
-                                target="_blank">
-
-                                <figure class="project-img">
-                                    <div class="project-item-icon-box">
-                                        <ion-icon name="eye-outline"></ion-icon>
-                                    </div>
-
-                                    <img src="./assets/images/introduction-to-cybersecurity.png"
-                                        alt="Introduction to Cybersecurity" loading="lazy">
-
-                                </figure>
-
-                                <h3 class="project-title">Introduction to Cybersecurity</h3>
-                                <p class="project-category">Cisco Networking Academy</p>
-
-                            </a>
-                        </li>
-
-                        <li class="project-item active" data-filter-item data-category="Network Defense">
-                            <a href="https://www.credly.com/badges/43b26eaf-f123-4fae-bc11-985f64c7ef38/public_url"
-                                target="_blank">
-
-                                <figure class="project-img">
-                                    <div class="project-item-icon-box">
-                                        <ion-icon name="eye-outline"></ion-icon>
-                                    </div>
-
-                                    <img src="./assets/images/network-defense (2).png" alt="Network Defense"
-                                        loading="lazy">
-
-                                </figure>
-
-                                <h3 class="project-title">Network Defense</h3>
-                                <p class="project-category">Cisco Networking Academy</p>
-
-                            </a>
-                        </li>
-
-                        <li class="project-item active" data-filter-item data-category="Networking Basics">
-                            <a href="https://www.credly.com/badges/d8eba723-f61b-47bd-a815-13a4adc00bbd"
-                                target="_blank">
-
-                                <figure class="project-img">
-                                    <div class="project-item-icon-box">
-                                        <ion-icon name="eye-outline"></ion-icon>
-                                    </div>
-
-                                    <img src="./assets/images/networking-basics.png" alt="Networking Basics"
-                                        loading="lazy">
-
-                                </figure>
-
-                                <h3 class="project-title">Networking Basics</h3>
-                                <p class="project-category">Cisco Networking Academy</p>
-
-                            </a>
-                        </li>
-
-                        <li class="project-item active" data-filter-item
-                            data-category="HTB-Introduction to Active Directory">
-                            <a href="https://academy.hackthebox.com/achievement/425415/74" target="_blank">
-
-                                <figure class="project-img">
-                                    <div class="project-item-icon-box">
-                                        <ion-icon name="eye-outline"></ion-icon>
-                                    </div>
-
-                                    <img src="./assets/images/introad.jpg" alt="Introduction to Active Directory"
-                                        loading="lazy">
-
-                                </figure>
-
-                                <h3 class="project-title">Introduction to Active Directory</h3>
-                                <p class="project-category">Windows - Hack The Box</p>
-
-                            </a>
-                        </li>
-
-                        <li class="project-item active" data-filter-item
-                            data-category="HTB-Introduction to Web Applications">
-                            <a href="https://academy.hackthebox.com/achievement/425415/75" target="_blank">
-
-                                <figure class="project-img">
-                                    <div class="project-item-icon-box">
-                                        <ion-icon name="eye-outline"></ion-icon>
-                                    </div>
-
-                                    <img src="./assets/images/webapp.jpg" alt="Introduction to Web Applications"
-                                        loading="lazy">
-
-                                </figure>
-
-                                <h3 class="project-title">Introduction to Web Applications</h3>
-                                <p class="project-category">Web - Hack The Box</p>
-
-                            </a>
-                        </li>
-
-                        <li class="project-item active" data-filter-item data-category="HTB-Web Requests">
-                            <a href="https://academy.hackthebox.com/achievement/425415/35" target="_blank">
-
-                                <figure class="project-img">
-                                    <div class="project-item-icon-box">
-                                        <ion-icon name="eye-outline"></ion-icon>
-                                    </div>
-
-                                    <img src="./assets/images/webr.jpg" alt="Web Requests" loading="lazy">
-
-                                </figure>
-
-                                <h3 class="project-title">Web Requests</h3>
-                                <p class="project-category">Web - Hack The Box</p>
-
-                            </a>
-                        </li>
-
-                        <li class="project-item active" data-filter-item data-category="HTB-Windows Fundamentals">
-                            <a href="https://academy.hackthebox.com/achievement/425415/49" target="_blank">
-
-                                <figure class="project-img">
-                                    <div class="project-item-icon-box">
-                                        <ion-icon name="eye-outline"></ion-icon>
-                                    </div>
-
-                                    <img src="./assets/images/winhb.jpg" alt="Windows Fundamentals" loading="lazy">
-
-                                </figure>
-
-                                <h3 class="project-title">Windows Fundamentals</h3>
-                                <p class="project-category">Windows - Hack The Box</p>
-
-                            </a>
-                        </li>
-
-                        <li class="project-item active" data-filter-item data-category="HTB-Intro to Academy">
-                            <a href="https://academy.hackthebox.com/achievement/425415/15" target="_blank">
-
-                                <figure class="project-img">
-                                    <div class="project-item-icon-box">
-                                        <ion-icon name="eye-outline"></ion-icon>
-                                    </div>
-
-                                    <img src="./assets/images/introhb.jpg" alt="Intro to Academy" loading="lazy">
-
-                                </figure>
-
-                                <h3 class="project-title">Intro to Academy</h3>
-                                <p class="project-category">Hack The Box</p>
-
-                            </a>
-                        </li>
-
-                        <li class="project-item active" data-filter-item
-                            data-category="Cybersecurity Essentials (LFC108)">
-                            <a href="https://ti-user-certificates.s3.amazonaws.com/e0df7fbf-a057-42af-8a1f-590912be5460/3c6ce2b4-597b-4cfa-a725-b24ab0afdf7a-edwin-de-los-santos-0fd3ecfc-0f8d-4749-89c9-6f17f660f72c-certificate.pdf"
-                                target="_blank">
-
-                                <figure class="project-img">
-                                    <div class="project-item-icon-box">
-                                        <ion-icon name="eye-outline"></ion-icon>
-                                    </div>
-
-                                    <img src="./assets/images/Cybersec.jpg" alt="Cybersecurity Essentials"
-                                        loading="lazy">
-
-                                </figure>
-
-                                <h3 class="project-title">Cybersecurity Essentials (LFC108)</h3>
-                                <p class="project-category">The Linux Foundation</p>
-
-                            </a>
-                        </li>
-
-                        <li class="project-item active" data-filter-item data-category="Google Workspace Security">
-                            <a href="https://www.cloudskillsboost.google/public_profiles/7201d603-5395-482e-8679-357cbd059c7c/badges/14538038"
-                                target="_blank">
-
-                                <figure class="project-img">
-                                    <div class="project-item-icon-box">
-                                        <ion-icon name="eye-outline"></ion-icon>
-                                    </div>
-
-                                    <img src="./assets/images/gws.png" alt="Google Workspace Security" loading="lazy">
-
-                                </figure>
-
-                                <h3 class="project-title">Google Workspace Security</h3>
-                                <p class="project-category">Google Cloud</p>
-
-                            </a>
-                        </li>
-
-                        <li class="project-item active" data-filter-item
-                            data-category="Google Workspace Mail Management">
-                            <a href="https://www.cloudskillsboost.google/public_profiles/7201d603-5395-482e-8679-357cbd059c7c/badges/14538038"
-                                target="_blank">
-
-                                <figure class="project-img">
-                                    <div class="project-item-icon-box">
-                                        <ion-icon name="eye-outline"></ion-icon>
-                                    </div>
-
-                                    <img src="./assets/images/gwmm.png" alt="Google Workspace Mail Management"
-                                        loading="lazy">
-
-                                </figure>
-
-                                <h3 class="project-title">Google Workspace Mail Management</h3>
-                                <p class="project-category">Google Cloud</p>
-
-                            </a>
-                        </li>
-
-                        <li class="project-item active" data-filter-item
-                            data-category="Docker, de Principiante a Experto">
-                            <a href="https://www.udemy.com/certificate/UC-9efc7174-1a4f-4164-810f-2da469a45ae8/"
-                                target="_blank">
-
-                                <figure class="project-img">
-                                    <div class="project-item-icon-box">
-                                        <ion-icon name="eye-outline"></ion-icon>
-                                    </div>
-
-                                    <img src="./assets/images/docker.jpg" alt="Docker" loading="lazy">
-
-                                </figure>
-
-                                <h3 class="project-title">Docker, de Principiante a Experto</h3>
-                                <p class="project-category">Virtualización</p>
-
-                            </a>
-                        </li>
-
-                        <li class="project-item active" data-filter-item
-                            data-category="VMware vSphere 6.7 de Principiante a Avanzado">
-                            <a href="https://www.udemy.com/certificate/UC-8cd75487-2a0e-4e44-ba49-63287ef36df6/"
-                                target="_blank">
-
-                                <figure class="project-img">
-                                    <div class="project-item-icon-box">
-                                        <ion-icon name="eye-outline"></ion-icon>
-                                    </div>
-
-                                    <img src="./assets/images/vm.jpg" alt="VMware vSphere" loading="lazy">
-
-                                </figure>
-
-                                <h3 class="project-title">VMware vSphere 6.7 de Principiante a Avanzado</h3>
-                                <p class="project-category">Virtualización</p>
-
-                            </a>
-                        </li>
-
-                        <li class="project-item active" data-filter-item
-                            data-category="Zabbix De Principiante a Experto">
-                            <a href="https://www.udemy.com/certificate/UC-c7cdef4a-9b28-46ab-9620-9db701b58898/"
-                                target="_blank">
-
-                                <figure class="project-img">
-                                    <div class="project-item-icon-box">
-                                        <ion-icon name="eye-outline"></ion-icon>
-                                    </div>
-
-                                    <img src="./assets/images/zabbix.jpg" alt="Zabbix" loading="lazy">
-
-                                </figure>
-
-                                <h3 class="project-title">Zabbix De Principiante a Experto</h3>
-                                <p class="project-category">Monitoreo</p>
-
-                            </a>
-                        </li>
-
-                        <li class="project-item active" data-filter-item data-category="Creación de Informes">
-                            <a href="https://backtrackacademy.com/examen/59/certificate.pdf?key=335318f71497add59b558e3c96d139fb"
-                                target="_blank">
-
-                                <figure class="project-img">
-                                    <div class="project-item-icon-box">
-                                        <ion-icon name="eye-outline"></ion-icon>
-                                    </div>
-
-                                    <img src="./assets/images/backtrack.jpg" alt="Creación de Informes" loading="lazy">
-
-                                </figure>
-
-                                <h3 class="project-title">Creación de Informes</h3>
-                                <p class="project-category">Informes</p>
-
-                            </a>
-                        </li>
-
-                        <li class="project-item active" data-filter-item data-category="Introducción a la Seguridad">
-                            <a href="https://backtrackacademy.com/examen/70/certificate.pdf?key=39cea9c8659ac60cb44a0e849e9688d9"
-                                target="_blank">
-
-                                <figure class="project-img">
-                                    <div class="project-item-icon-box">
-                                        <ion-icon name="eye-outline"></ion-icon>
-                                    </div>
-
-                                    <img src="./assets/images/backtrack.jpg" alt="Introducción a la Seguridad"
-                                        loading="lazy">
-
-                                </figure>
-
-                                <h3 class="project-title">Introducción a la Seguridad</h3>
-                                <p class="project-category">Seguridad</p>
-
-                            </a>
-                        </li>
-
-                        <li class="project-item active" data-filter-item data-category="Windows Server 2012 R2">
-                            <a href="https://www.linkedin.com/learning/certificates/888e0bb18cc7136f72717a4ca5a8eab982b9f909dbf0ab8756913f7536bf6cfc?trk=backfilled_certificate"
-                                target="_blank">
-
-                                <figure class="project-img">
-                                    <div class="project-item-icon-box">
-                                        <ion-icon name="eye-outline"></ion-icon>
-                                    </div>
-
-                                    <img src="./assets/images/linkeding.png" alt="Windows Server" loading="lazy">
-
-                                </figure>
-
-                                <h3 class="project-title">Windows Server 2012 R2: Configura y gestiona Alta
-                                    disponibilidad</h3>
-                                <p class="project-category">Windows Server</p>
-
-                            </a>
-                        </li>
-
-                        <li class="project-item active" data-filter-item data-category="NSE 1">
-                            <a href="https://training.fortinet.com/mod/customcert/verify_certificate.php"
-                                target="_blank">
-
-                                <figure class="project-img">
-                                    <div class="project-item-icon-box">
-                                        <ion-icon name="eye-outline"></ion-icon>
-                                    </div>
-
-                                    <img src="./assets/images/ns1.jpg" alt="NSE 1" loading="lazy">
-
-                                </figure>
-
-                                <h3 class="project-title">NSE 1 Network Security Associate</h3>
-                                <p class="project-category">Firewall (73REvGlD9W)</p>
-
-                            </a>
-                        </li>
-
-                        <li class="project-item active" data-filter-item data-category="NSE 2">
-                            <a href="https://training.fortinet.com/mod/customcert/verify_certificate.php"
-                                target="_blank">
-
-                                <figure class="project-img">
-                                    <div class="project-item-icon-box">
-                                        <ion-icon name="eye-outline"></ion-icon>
-                                    </div>
-
-                                    <img src="./assets/images/ns2.jpg" alt="NSE 2" loading="lazy">
-
-                                </figure>
-
-                                <h3 class="project-title">NSE 2 Network Security Associate</h3>
-                                <p class="project-category">Firewall (aHLFPB8t05)</p>
-
-                            </a>
-                        </li>
-
-                    </ul>
-
-                </section>
-
-            </article>
-
-            <!--
-        - #CONTACT
-      -->
-
-            <article class="contact" data-page="contact">
-
-                <header>
-                    <h2 class="h2 article-title">Contacto</h2>
-                </header>
-
-                <section class="mapbox" data-mapbox>
-                    <figure>
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d199666.5651251294!2d-69.58334177520186!3d18.56165006739519!2m3!1f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eaf89f1107ea5ab%3A0xd6c587b82715c164!2sSanto+Domingo%2C+CA%2C+Dominican+Republic!5e0!3m2!1sen!2sbd!4v1647608789441!5m2!1sen!2sbd"
-                            width="400" height="300" loading="lazy"></iframe>
-                    </figure>
-                </section>
-
-                <section class="contact-form">
-
-                    <h3 class="h3 form-title">Formulario De Contacto</h3>
-
-                    <form action="#" class="form" data-form>
-
-                        <div class="input-wrapper">
-                            <input type="text" name="fullname" class="form-input" placeholder="Nombre completo" required
-                                data-form-input>
-
-                            <input type="email" name="email" class="form-input" placeholder="Dirección de email"
-                                required data-form-input>
-                        </div>
-
-                        <textarea name="message" class="form-input" placeholder="Tu Mensaje" required
-                            data-form-input></textarea>
-
-                        <button class="form-btn" type="submit" disabled data-form-btn>
-                            <ion-icon name="paper-plane"></ion-icon>
-                            <span>Enviar Mensaje</span>
-                        </button>
-
-                    </form>
-
-                </section>
-
-            </article>
-
+<main class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <div class="avatar-ring">
+        <img src="./assets/images/my-avatar.jpg" alt="Edwin De Los Santos">
+      </div>
+      <div class="sidebar-name">Edwin De Los Santos</div>
+      <div class="sidebar-role">SysAdmin · IT Infrastructure</div>
+      <div class="sidebar-role2">Cybersecurity Analyst</div>
+      <div class="status-badge">
+        <span class="status-dot"></span>
+        Disponible · Santo Domingo, RD
+      </div>
+    </div>
+
+    <div class="sidebar-body">
+      <div class="contact-row">
+        <div class="icon">✉</div>
+        <div>
+          <div class="contact-label">Email</div>
+          <a href="mailto:edwindelossantos11@gmail.com">edwindelossantos11@gmail.com</a>
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="icon">⚑</div>
+        <div>
+          <div class="contact-label">Ubicación</div>
+          <span style="color:var(--text2); font-size:12px;">Santo Domingo, República Dominicana</span>
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="icon">◈</div>
+        <div>
+          <div class="contact-label">Portafolio</div>
+          <a href="https://edwindelossantos.github.io" target="_blank">edwindelossantos.github.io</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="social-row">
+      <a href="https://github.com/edwindelossantos" target="_blank" class="social-btn">
+        <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/edwindelossantos11/" target="_blank" class="social-btn">
+        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://www.youtube.com/@San3d11" target="_blank" class="social-btn">
+        <svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+        YouTube
+      </a>
+    </div>
+  </aside>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <button class="nav-btn active" data-page="about">About</button>
+    <button class="nav-btn" data-page="resume">Resume</button>
+    <button class="nav-btn" data-page="projects">Proyectos</button>
+    <button class="nav-btn" data-page="portfolio">Certificados</button>
+    <button class="nav-btn" data-page="contact">Contacto</button>
+  </nav>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- ABOUT -->
+    <article class="page active" id="page-about">
+      <div class="section-header">
+        <span class="prompt">~/about $</span>
+        <h2>Acerca de mí</h2>
+      </div>
+
+      <div class="about-bio">
+        <p>Profesional de TI con más de <strong>12 años de experiencia</strong> en administración de infraestructura, sistemas y seguridad de la información. He trabajado en entornos corporativos y gubernamentales gestionando servidores, redes, plataformas cloud y equipos técnicos en República Dominicana y Puerto Rico.</p>
+        <p>Especializado en administración de servidores <strong>Windows/Linux</strong>, Google Workspace, <strong>AWS</strong>, Active Directory, seguridad de endpoints, análisis de vulnerabilidades y monitoreo con <strong>Zabbix</strong>. Experiencia con herramientas de automatización como <strong>Ansible</strong> y contenedores con <strong>Docker</strong>.</p>
+        <p>En el <strong>Ministerio Público</strong> de la República Dominicana me desempeñé como Analista de Seguridad de la Información, siendo responsable del escaneo de vulnerabilidades y protección de sistemas críticos del Estado.</p>
+        <p>Participante activo en la comunidad de ciberseguridad dominicana — <strong>Staff en HackConRD 2026</strong> y practicante constante en Hack The Box y TryHackMe.</p>
+      </div>
+
+      <div class="section-header" style="margin-top:28px;">
+        <span class="prompt">~/stack $</span>
+        <h2 style="font-size:18px;">Stack tecnológico</h2>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-tag">Linux</div>
+        <div class="skill-tag">Windows Server</div>
+        <div class="skill-tag">AWS Cloud</div>
+        <div class="skill-tag">Active Directory</div>
+        <div class="skill-tag">Ansible</div>
+        <div class="skill-tag">Docker</div>
+        <div class="skill-tag">Zabbix</div>
+        <div class="skill-tag">Graylog</div>
+        <div class="skill-tag">VMware ESXi</div>
+        <div class="skill-tag">Cisco Meraki</div>
+        <div class="skill-tag">Fortinet</div>
+        <div class="skill-tag">Sophos</div>
+        <div class="skill-tag">Google Workspace</div>
+        <div class="skill-tag">Microsoft 365</div>
+        <div class="skill-tag">PowerShell</div>
+        <div class="skill-tag">Nessus</div>
+        <div class="skill-tag">Metasploit</div>
+        <div class="skill-tag">Veeam Backup</div>
+      </div>
+
+      <div class="section-header" style="margin-top:8px;">
+        <span class="prompt">~/now $</span>
+        <h2 style="font-size:18px;">En qué estoy trabajando</h2>
+      </div>
+
+      <div class="doing-grid">
+        <div class="doing-card">
+          <div class="doing-icon"><img src="./assets/images/hack.png" alt="HTB"></div>
+          <div>
+            <h4>Hack The Box</h4>
+            <p>Completando rutas avanzadas de pentesting y preparación para certificaciones ofensivas.</p>
+          </div>
+        </div>
+        <div class="doing-card">
+          <div class="doing-icon"><img src="./assets/images/linux.png" alt="Linux"></div>
+          <div>
+            <h4>RedTeamRD / HackConRD</h4>
+            <p>Participación activa en la comunidad de ciberseguridad dominicana como staff y expositor.</p>
+          </div>
+        </div>
+        <div class="doing-card">
+          <div class="doing-icon"><img src="./assets/images/brain.png" alt="Ansible"></div>
+          <div>
+            <h4>Automatización con Ansible</h4>
+            <p>Desarrollando playbooks para automatización de despliegues e infraestructura como código.</p>
+          </div>
+        </div>
+        <div class="doing-card">
+          <div class="doing-icon"><img src="./assets/images/googlework.png" alt="AWS"></div>
+          <div>
+            <h4>AWS & Cloud Security</h4>
+            <p>Profundizando en servicios cloud y buenas prácticas de seguridad en entornos AWS.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-header" style="margin-top:8px;">
+        <span class="prompt">~/tools $</span>
+        <h2 style="font-size:18px;">Herramientas</h2>
+      </div>
+
+      <div class="tools-scroll">
+        <div class="tool-item"><img src="./assets/images/mt.png" alt="Metasploit"><span>Metasploit</span></div>
+        <div class="tool-item"><img src="./assets/images/nesus.png" alt="Nessus"><span>Nessus</span></div>
+        <div class="tool-item"><img src="./assets/images/win.png" alt="Windows"><span>Windows</span></div>
+        <div class="tool-item"><img src="./assets/images/linux.png" alt="Linux"><span>Linux</span></div>
+        <div class="tool-item"><img src="./assets/images/docker.png" alt="Docker"><span>Docker</span></div>
+        <div class="tool-item"><img src="./assets/images/sophos.png" alt="Sophos"><span>Sophos</span></div>
+        <div class="tool-item"><img src="./assets/images/365.png" alt="M365"><span>M365</span></div>
+        <div class="tool-item"><img src="./assets/images/vm.png" alt="VMware"><span>VMware</span></div>
+        <div class="tool-item"><img src="./assets/images/zabbix.png" alt="Zabbix"><span>Zabbix</span></div>
+        <div class="tool-item"><img src="./assets/images/graylog.png" alt="Graylog"><span>Graylog</span></div>
+        <div class="tool-item"><img src="./assets/images/meraki.png" alt="Meraki"><span>Meraki</span></div>
+        <div class="tool-item"><img src="./assets/images/veeam.png" alt="Veeam"><span>Veeam</span></div>
+        <div class="tool-item"><img src="./assets/images/qnap.png" alt="QNAP"><span>QNAP</span></div>
+      </div>
+    </article>
+
+    <!-- RESUME -->
+    <article class="page" id="page-resume">
+      <div class="section-header">
+        <span class="prompt">~/resume $</span>
+        <h2>Experiencia & Educación</h2>
+      </div>
+
+      <div class="timeline-section">
+        <div class="timeline-label">
+          <div class="line"></div>
+          <h3>Experiencia laboral</h3>
+          <div class="line"></div>
         </div>
 
-    </main>
+        <div class="timeline-item" onclick="this.classList.toggle('open')">
+          <div class="timeline-head">
+            <div>
+              <div class="timeline-title">Caribe Media S.A.</div>
+              <div class="timeline-role">Administrador de Servidores · Presencial</div>
+            </div>
+            <span class="timeline-period">Dic 2020 — Actual</span>
+          </div>
+          <div class="timeline-details">
+            <ul>
+              <li>Administración Windows Server 2008–2019 y servidores Linux</li>
+              <li>Gestión de servicios de red: AD, DHCP, DNS, WDS, WSUS, GPOs, Print Server</li>
+              <li>Administración VMware ESXi, vCenter, QNap y NetApp</li>
+              <li>Implementación y administración de MFA en Microsoft 365</li>
+              <li>Administración de Firewall Cisco Meraki y Sophos Center</li>
+              <li>Monitoreo de infraestructura con Zabbix y centralización de logs con Graylog</li>
+              <li>Administración de Veeam Backup y Exchange 365</li>
+              <li>Documentación de procesos, bitácoras y procedimientos</li>
+            </ul>
+          </div>
+        </div>
 
-    <!--
-    - custom js link
-  -->
-    <script src="./assets/js/script.js"></script>
+        <div class="timeline-item" onclick="this.classList.toggle('open')">
+          <div class="timeline-head">
+            <div>
+              <div class="timeline-title">Axesa Servicios de Información</div>
+              <div class="timeline-role">Administrador de Servidores · Remoto · San Juan, PR</div>
+            </div>
+            <span class="timeline-period">Dic 2020 — Actual</span>
+          </div>
+          <div class="timeline-details">
+            <ul>
+              <li>Automatización con scripts PowerShell para gestión de sistemas</li>
+              <li>Administración de Windows Server 2008–2019 y servicios AD, DHCP, DNS, File Server</li>
+              <li>Administración VMware ESXi, vCenter y Exchange 365</li>
+              <li>Gestión de Firewall Cisco Meraki y Sophos Center</li>
+            </ul>
+          </div>
+        </div>
 
-    <!--
-    - ionicon link
-  -->
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <div class="timeline-item" onclick="this.classList.toggle('open')">
+          <div class="timeline-head">
+            <div>
+              <div class="timeline-title">Infopáginas</div>
+              <div class="timeline-role">Administrador de Servidores · Remoto · Guaynabo, PR</div>
+            </div>
+            <span class="timeline-period">Jul 2023 — Actual</span>
+          </div>
+          <div class="timeline-details">
+            <ul>
+              <li>Escaneo y análisis de vulnerabilidades de infraestructura</li>
+              <li>Administración de Active Directory y Exchange 2019</li>
+              <li>Administración de firewalls Fortinet y WatchGuard</li>
+              <li>Verificación y respuesta a alertas de seguridad</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item" onclick="this.classList.toggle('open')">
+          <div class="timeline-head">
+            <div>
+              <div class="timeline-title">Ministerio Público — Analista de Seguridad</div>
+              <div class="timeline-role">Analista de Seguridad de Información · Santo Domingo</div>
+            </div>
+            <span class="timeline-period">Jul 2019 — Oct 2020</span>
+          </div>
+          <div class="timeline-details">
+            <ul>
+              <li>Escaneo de vulnerabilidades en sistemas críticos del Estado</li>
+              <li>Administración de Active Directory y Exchange 2019</li>
+              <li>Administración de firewalls Fortinet y WatchGuard</li>
+              <li>Verificación y respuesta ante alertas de seguridad</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item" onclick="this.classList.toggle('open')">
+          <div class="timeline-head">
+            <div>
+              <div class="timeline-title">Ministerio Público — Administrador de Sistemas</div>
+              <div class="timeline-role">Administrador de Sistemas · Santo Domingo</div>
+            </div>
+            <span class="timeline-period">Oct 2016 — Jul 2019</span>
+          </div>
+          <div class="timeline-details">
+            <ul>
+              <li>Administración Windows Server 2008–2019 con Hyper-V y Proxmox</li>
+              <li>Gestión de servidores HP y DELL con SAN Synology y PowerVault</li>
+              <li>Administración Exchange 2010 y servicios AD, DHCP, DNS, File Server</li>
+              <li>Backup con BackupExec y documentación completa de infraestructura</li>
+              <li>Diseño de diagramas de red en Visio</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-head">
+            <div>
+              <div class="timeline-title">Ministerio Público — Soporte Técnico</div>
+              <div class="timeline-role">Soporte Técnico · Santo Domingo</div>
+            </div>
+            <span class="timeline-period">Ago 2013 — Oct 2016</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-section">
+        <div class="timeline-label">
+          <div class="line"></div>
+          <h3>Educación</h3>
+          <div class="line"></div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-head">
+            <div>
+              <div class="timeline-title">Universidad Dominicana O&M</div>
+              <div class="timeline-role">Ing. en Sistemas y Computación</div>
+            </div>
+            <span class="timeline-period">2010 — 2014</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-label" style="margin-bottom:20px;">
+        <div class="line"></div>
+        <h3>Habilidades técnicas</h3>
+        <div class="line"></div>
+      </div>
+
+      <div class="skill-tags-section">
+        <div class="skill-category">
+          <div class="skill-cat-label">Seguridad</div>
+          <div class="tag-row">
+            <span class="tag">Análisis de vulnerabilidades</span>
+            <span class="tag">Nessus</span>
+            <span class="tag">Metasploit</span>
+            <span class="tag">Fortinet NSE</span>
+            <span class="tag">Sophos</span>
+            <span class="tag">Network Defense</span>
+            <span class="tag">Cisco Meraki</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-cat-label">Infraestructura</div>
+          <div class="tag-row">
+            <span class="tag">Windows Server</span>
+            <span class="tag">Linux</span>
+            <span class="tag">Active Directory</span>
+            <span class="tag">VMware ESXi</span>
+            <span class="tag">Hyper-V</span>
+            <span class="tag">DHCP · DNS · GPO</span>
+            <span class="tag">Veeam Backup</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-cat-label">Cloud & Automatización</div>
+          <div class="tag-row">
+            <span class="tag">AWS</span>
+            <span class="tag">Google Workspace</span>
+            <span class="tag">Microsoft 365</span>
+            <span class="tag">Ansible</span>
+            <span class="tag">Docker</span>
+            <span class="tag">PowerShell</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-cat-label">Monitoreo</div>
+          <div class="tag-row">
+            <span class="tag">Zabbix</span>
+            <span class="tag">Graylog</span>
+            <span class="tag">Documentación técnica</span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- PROJECTS -->
+    <article class="page" id="page-projects">
+      <div class="section-header">
+        <span class="prompt">~/projects $</span>
+        <h2>Proyectos</h2>
+      </div>
+
+      <a href="https://github.com/edwindelossantos" target="_blank" class="github-cta">
+        <div class="github-cta-left">
+          <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          <div>
+            <div class="github-cta-title">github.com/edwindelossantos</div>
+            <div class="github-cta-sub">16 repositorios públicos · Ver todo el código</div>
+          </div>
+        </div>
+        <div class="github-cta-arrow">→</div>
+      </a>
+
+      <div class="projects-grid">
+        <a href="https://edwinconvertmoney.github.io/" target="_blank" class="project-card">
+          <div class="project-card-top">
+            <div class="project-icon">💱</div>
+            <span class="project-lang">JavaScript</span>
+          </div>
+          <h3>Edwin Convert Money</h3>
+          <p>Conversor de moneda en tiempo real. Consulta tasas actualizadas para múltiples divisas desde el navegador.</p>
+          <span class="project-link">Ver demo</span>
+        </a>
+
+        <a href="https://github.com/edwindelossantos/CapacitacionCM" target="_blank" class="project-card">
+          <div class="project-card-top">
+            <div class="project-icon">🎓</div>
+            <span class="project-lang">Python</span>
+          </div>
+          <h3>Plataforma CapacitacionCM</h3>
+          <p>Sitio web para gestión y distribución de cursos de capacitación interna. Desarrollado en Python para uso corporativo.</p>
+          <span class="project-link">Ver repositorio</span>
+        </a>
+
+        <a href="https://github.com/edwindelossantos/calibre-web" target="_blank" class="project-card">
+          <div class="project-card-top">
+            <div class="project-icon">📚</div>
+            <span class="project-lang">Docker</span>
+          </div>
+          <h3>Calibre-Web Self-Hosted</h3>
+          <p>Biblioteca digital self-hosted desplegada con Docker Compose. Gestión completa de libros electrónicos en servidor propio.</p>
+          <span class="project-link">Ver repositorio</span>
+        </a>
+
+        <a href="https://github.com/edwindelossantos/PowerShellForSysadmins" target="_blank" class="project-card">
+          <div class="project-card-top">
+            <div class="project-icon">⚡</div>
+            <span class="project-lang">PowerShell</span>
+          </div>
+          <h3>PowerShell para SysAdmins</h3>
+          <p>Colección de scripts de automatización para administración de sistemas Windows. Tareas comunes de SysAdmin automatizadas.</p>
+          <span class="project-link">Ver repositorio</span>
+        </a>
+
+        <a href="https://github.com/edwindelossantos/Random-PowerShell-Work" target="_blank" class="project-card">
+          <div class="project-card-top">
+            <div class="project-icon">🔧</div>
+            <span class="project-lang">PowerShell</span>
+          </div>
+          <h3>Random PowerShell Work</h3>
+          <p>Scripts variados de PowerShell para tareas de administración, reportes y automatización de infraestructura Windows.</p>
+          <span class="project-link">Ver repositorio</span>
+        </a>
+
+        <a href="https://github.com/edwindelossantos" target="_blank" class="project-card" style="border-style: dashed; justify-content: center; align-items: center; text-align:center; min-height:180px;">
+          <div style="color: var(--text3); font-size:13px; line-height:1.8;">
+            <div style="font-size:24px; margin-bottom:8px; color:var(--border2);">+</div>
+            Más proyectos en GitHub<br>
+            <span style="font-size:11px; color:var(--accent);">github.com/edwindelossantos →</span>
+          </div>
+        </a>
+      </div>
+    </article>
+
+    <!-- PORTFOLIO / CERTS -->
+    <article class="page" id="page-portfolio">
+      <div class="section-header">
+        <span class="prompt">~/certs $</span>
+        <h2>Certificaciones</h2>
+      </div>
+
+      <div class="cert-filters">
+        <button class="filter-btn active" data-filter="all">Todos</button>
+        <button class="filter-btn" data-filter="security">Seguridad</button>
+        <button class="filter-btn" data-filter="cloud">Cloud</button>
+        <button class="filter-btn" data-filter="infra">Infraestructura</button>
+        <button class="filter-btn" data-filter="network">Redes</button>
+      </div>
+
+      <div class="certs-grid">
+        <a href="https://credsverse.com/credentials/6420c416-723f-4787-ad5f-2877b7a99264?preview=1" target="_blank" class="cert-card" data-cat="security">
+          <img src="./assets/images/desa-malware.png" alt="Desarrollo de Malware" class="cert-img">
+          <div class="cert-info"><div class="cert-title">Workshop Desarrollo de Malware</div><div class="cert-issuer">RedTeamRD · 2026</div></div>
+        </a>
+        <a href="https://credsverse.com/credentials/6420c416-723f-4787-ad5f-2877b7a99264?preview=1" target="_blank" class="cert-card" data-cat="security">
+          <img src="./assets/images/HackConRD-2026.png" alt="HackConRD" class="cert-img">
+          <div class="cert-info"><div class="cert-title">Staff | Hacking Rooms HackConRD</div><div class="cert-issuer">RedTeamRD · 2026</div></div>
+        </a>
+        <a href="https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-TBN55UHNBN.pdf" target="_blank" class="cert-card" data-cat="security">
+          <img src="./assets/images/thm-pre-security.png" alt="Pre Security" class="cert-img">
+          <div class="cert-info"><div class="cert-title">Pre Security Path</div><div class="cert-issuer">TryHackMe</div></div>
+        </a>
+        <a href="https://www.udemy.com/certificate/UC-1b310153-d9ef-4d5f-8c6e-2fded5d4d3e7/" target="_blank" class="cert-card" data-cat="infra">
+          <img src="./assets/images/Ansible.jpg" alt="Ansible" class="cert-img">
+          <div class="cert-info"><div class="cert-title">Ansible Desde Cero</div><div class="cert-issuer">Udemy · 2026</div></div>
+        </a>
+        <a href="https://skillbuilder.aws" target="_blank" class="cert-card" data-cat="cloud">
+          <img src="./assets/images/aws.jpg" alt="AWS" class="cert-img">
+          <div class="cert-info"><div class="cert-title">AWS Cloud Practitioner Essentials</div><div class="cert-issuer">Amazon Web Services · 2025</div></div>
+        </a>
+        <a href="https://www.credly.com/badges/07339a39-6d6c-4c08-bd6f-deccd2a5eb30" target="_blank" class="cert-card" data-cat="security">
+          <img src="./assets/images/introduction-to-cybersecurity.png" alt="Cybersecurity" class="cert-img">
+          <div class="cert-info"><div class="cert-title">Introduction to Cybersecurity</div><div class="cert-issuer">Cisco · 2024</div></div>
+        </a>
+        <a href="https://www.credly.com/badges/43b26eaf-f123-4fae-bc11-985f64c7ef38/public_url" target="_blank" class="cert-card" data-cat="security network">
+          <img src="./assets/images/network-defense (2).png" alt="Network Defense" class="cert-img">
+          <div class="cert-info"><div class="cert-title">Network Defense</div><div class="cert-issuer">Cisco · 2023</div></div>
+        </a>
+        <a href="https://www.credly.com/badges/d8eba723-f61b-47bd-a815-13a4adc00bbd" target="_blank" class="cert-card" data-cat="network">
+          <img src="./assets/images/networking-basics.png" alt="Networking Basics" class="cert-img">
+          <div class="cert-info"><div class="cert-title">Networking Basics</div><div class="cert-issuer">Cisco · 2024</div></div>
+        </a>
+        <a href="https://academy.hackthebox.com/achievement/425415/74" target="_blank" class="cert-card" data-cat="security infra">
+          <img src="./assets/images/introad.jpg" alt="Active Directory" class="cert-img">
+          <div class="cert-info"><div class="cert-title">Introduction to Active Directory</div><div class="cert-issuer">Hack The Box</div></div>
+        </a>
+        <a href="https://ti-user-certificates.s3.amazonaws.com/e0df7fbf-a057-42af-8a1f-590912be5460/3c6ce2b4-597b-4cfa-a725-b24ab0afdf7a-edwin-de-los-santos-0fd3ecfc-0f8d-4749-89c9-6f17f660f72c-certificate.pdf" target="_blank" class="cert-card" data-cat="security">
+          <img src="./assets/images/Cybersec.jpg" alt="Linux Foundation" class="cert-img">
+          <div class="cert-info"><div class="cert-title">Cybersecurity Essentials LFC108</div><div class="cert-issuer">The Linux Foundation · 2023</div></div>
+        </a>
+        <a href="https://www.cloudskillsboost.google/public_profiles/7201d603-5395-482e-8679-357cbd059c7c/badges/14538038" target="_blank" class="cert-card" data-cat="cloud security">
+          <img src="./assets/images/gws.png" alt="GWS Security" class="cert-img">
+          <div class="cert-info"><div class="cert-title">Google Workspace Security</div><div class="cert-issuer">Google Cloud · 2025</div></div>
+        </a>
+        <a href="https://www.cloudskillsboost.google/public_profiles/7201d603-5395-482e-8679-357cbd059c7c/badges/14538038" target="_blank" class="cert-card" data-cat="cloud">
+          <img src="./assets/images/gwmm.png" alt="GWS Mail" class="cert-img">
+          <div class="cert-info"><div class="cert-title">Google Workspace Mail Management</div><div class="cert-issuer">Google Cloud · 2025</div></div>
+        </a>
+        <a href="https://www.udemy.com/certificate/UC-9efc7174-1a4f-4164-810f-2da469a45ae8/" target="_blank" class="cert-card" data-cat="infra">
+          <img src="./assets/images/docker.jpg" alt="Docker" class="cert-img">
+          <div class="cert-info"><div class="cert-title">Docker de Principiante a Experto</div><div class="cert-issuer">Udemy · 2022</div></div>
+        </a>
+        <a href="https://www.udemy.com/certificate/UC-8cd75487-2a0e-4e44-ba49-63287ef36df6/" target="_blank" class="cert-card" data-cat="infra">
+          <img src="./assets/images/vm.jpg" alt="VMware" class="cert-img">
+          <div class="cert-info"><div class="cert-title">VMware vSphere 6.7</div><div class="cert-issuer">Udemy</div></div>
+        </a>
+        <a href="https://www.udemy.com/certificate/UC-c7cdef4a-9b28-46ab-9620-9db701b58898/" target="_blank" class="cert-card" data-cat="infra">
+          <img src="./assets/images/zabbix.jpg" alt="Zabbix" class="cert-img">
+          <div class="cert-info"><div class="cert-title">Zabbix de Principiante a Experto</div><div class="cert-issuer">Udemy · 2021</div></div>
+        </a>
+        <a href="https://training.fortinet.com/mod/customcert/verify_certificate.php" target="_blank" class="cert-card" data-cat="security network">
+          <img src="./assets/images/ns1.jpg" alt="NSE1" class="cert-img">
+          <div class="cert-info"><div class="cert-title">NSE 1 Network Security Associate</div><div class="cert-issuer">Fortinet</div></div>
+        </a>
+        <a href="https://training.fortinet.com/mod/customcert/verify_certificate.php" target="_blank" class="cert-card" data-cat="security network">
+          <img src="./assets/images/ns2.jpg" alt="NSE2" class="cert-img">
+          <div class="cert-info"><div class="cert-title">NSE 2 Network Security Associate</div><div class="cert-issuer">Fortinet</div></div>
+        </a>
+      </div>
+    </article>
+
+    <!-- CONTACT -->
+    <article class="page" id="page-contact">
+      <div class="section-header">
+        <span class="prompt">~/contact $</span>
+        <h2>Contacto</h2>
+      </div>
+
+      <div class="mapbox" style="margin-bottom:20px;">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d199666.5651251294!2d-69.58334177520186!3d18.56165006739519!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eaf89f1107ea5ab%3A0xd6c587b82715c164!2sSanto+Domingo%2C%20CA%2C%20Dominican+Republic!5e0!3m2!1sen!2sbd!4v1647608789441!5m2!1sen!2sbd" loading="lazy"></iframe>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info-card">
+          <h3>Información de contacto</h3>
+          <div class="contact-method">
+            <div class="cm-icon">✉</div>
+            <div>
+              <div class="cm-label">Email</div>
+              <a href="mailto:edwindelossantos11@gmail.com" class="cm-val">edwindelossantos11@gmail.com</a>
+            </div>
+          </div>
+          <div class="contact-method">
+            <div class="cm-icon">⚑</div>
+            <div>
+              <div class="cm-label">Ubicación</div>
+              <span class="cm-val">Santo Domingo, RD</span>
+            </div>
+          </div>
+          <div class="contact-method">
+            <div class="cm-icon" style="font-size:12px;">GH</div>
+            <div>
+              <div class="cm-label">GitHub</div>
+              <a href="https://github.com/edwindelossantos" target="_blank" class="cm-val">github.com/edwindelossantos</a>
+            </div>
+          </div>
+          <div class="contact-method">
+            <div class="cm-icon" style="font-size:12px;">LI</div>
+            <div>
+              <div class="cm-label">LinkedIn</div>
+              <a href="https://www.linkedin.com/in/edwindelossantos11/" target="_blank" class="cm-val">in/edwindelossantos11</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-info-card">
+          <h3>Formulario de contacto</h3>
+          <form onsubmit="return false;">
+            <input type="text" class="form-input" placeholder="Nombre completo" required>
+            <input type="email" class="form-input" placeholder="Correo electrónico" required>
+            <textarea class="form-input" rows="4" placeholder="Tu mensaje..." required></textarea>
+            <button type="submit" class="submit-btn">Enviar mensaje</button>
+          </form>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</main>
+
+<script>
+  const navBtns = document.querySelectorAll('.nav-btn');
+  const pages = document.querySelectorAll('.page');
+
+  navBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.page;
+      navBtns.forEach(b => b.classList.remove('active'));
+      pages.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('page-' + target).classList.add('active');
+    });
+  });
+
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      document.querySelectorAll('.cert-card').forEach(card => {
+        if (filter === 'all') {
+          card.style.display = 'block';
+        } else {
+          const cats = (card.dataset.cat || '').split(' ');
+          card.style.display = cats.includes(filter) ? 'block' : 'none';
+        }
+      });
+    });
+  });
+</script>
 
 </body>
-
 </html>
